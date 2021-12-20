@@ -55,6 +55,42 @@ XOS_CONSOLE_MAIN_MAIN \
 # udentify_exe HEADERS
 #
 udentify_exe_HEADERS += \
+$${STARA_SRC}/xos/app/console/protocol/xttp/base/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/protocol/xttp/base/main.hpp \
+\
+$${STARA_SRC}/xos/app/console/protocol/xttp/client/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/protocol/xttp/client/main.hpp \
+\
+$${STARA_SRC}/xos/app/console/protocol/http/base/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/protocol/http/base/main.hpp \
+\
+$${STARA_SRC}/xos/app/console/protocol/http/client/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/protocol/http/client/main.hpp \
+\
+$${STARA_SRC}/xos/app/console/network/sockets/protocol/xttp/client/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/network/sockets/protocol/xttp/client/main.hpp \
+\
+$${STARA_SRC}/xos/app/console/network/sockets/protocol/http/client/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/network/sockets/protocol/http/client/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/protocol/jsonttp/base/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/protocol/jsonttp/base/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/protocol/jsonttp/client/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/protocol/jsonttp/client/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/jsonttp/client/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/jsonttp/client/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/protocol/iittp/base/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/protocol/iittp/base/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/protocol/iittp/client/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/protocol/iittp/client/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/iittp/client/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/iittp/client/main.hpp \
+\
 $${UDENTIFY_SRC}/xos/app/console/udentify/main_opt.hpp \
 $${UDENTIFY_SRC}/xos/app/console/udentify/main.hpp \
 

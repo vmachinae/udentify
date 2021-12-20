@@ -37,9 +37,8 @@ $${udentify_INCLUDEPATH} \
 #
 iittp_DEFINES += \
 $${udentify_DEFINES} \
-
-#DEFAULT_LOGGING_LEVELS_ERROR \
-#XOS_CONSOLE_MAIN_MAIN \
+DEFAULT_LOGGING_LEVELS_ERROR \
+XOS_CONSOLE_MAIN_MAIN \
 
 ########################################################################
 # iittp OBJECTIVE_HEADERS
@@ -55,13 +54,48 @@ $${udentify_DEFINES} \
 ########################################################################
 # iittp HEADERS
 #
-#iittp_HEADERS += \
-#$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/iittp/client/main.hpp \
+iittp_HEADERS += \
+$${STARA_SRC}/xos/app/console/protocol/xttp/base/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/protocol/xttp/base/main.hpp \
+\
+$${STARA_SRC}/xos/app/console/protocol/xttp/client/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/protocol/xttp/client/main.hpp \
+\
+$${STARA_SRC}/xos/app/console/protocol/http/base/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/protocol/http/base/main.hpp \
+\
+$${STARA_SRC}/xos/app/console/protocol/http/client/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/protocol/http/client/main.hpp \
+\
+$${STARA_SRC}/xos/app/console/network/sockets/protocol/xttp/client/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/network/sockets/protocol/xttp/client/main.hpp \
+\
+$${STARA_SRC}/xos/app/console/network/sockets/protocol/http/client/main_opt.hpp \
+$${STARA_SRC}/xos/app/console/network/sockets/protocol/http/client/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/protocol/jsonttp/base/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/protocol/jsonttp/base/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/protocol/jsonttp/client/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/protocol/jsonttp/client/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/jsonttp/client/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/jsonttp/client/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/protocol/iittp/base/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/protocol/iittp/base/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/protocol/iittp/client/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/protocol/iittp/client/main.hpp \
+\
+$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/iittp/client/main_opt.hpp \
+$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/iittp/client/main.hpp \
 
 # iittp SOURCES
 #
-#iittp_SOURCES += \
-#$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/iittp/client/main.cpp \
+iittp_SOURCES += \
+$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/iittp/client/main_opt.cpp \
+$${UDENTIFY_SRC}/xos/app/console/network/sockets/protocol/iittp/client/main.cpp \
 
 ########################################################################
 # iittp FRAMEWORKS
