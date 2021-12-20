@@ -34,7 +34,7 @@ namespace client {
 
 /// class maint
 template 
-<class TExtends = main_opt, 
+<class TExtends = xos::app::console::network::sockets::protocol::iittp::client::main_optt<>, 
  class TImplements = typename TExtends::implements>
 
 class exported maint: virtual public TImplements, public TExtends {
@@ -52,7 +52,7 @@ public:
     typedef typename extends::file_t file_t;
 
     /// constructor / destructor
-    maint() {
+    maint(): run_(0) {
     }
     virtual ~maint() {
     }
@@ -65,6 +65,18 @@ protected:
     typedef typename extends::in_reader_t in_reader_t;
     typedef typename extends::out_writer_t out_writer_t;
     typedef typename extends::err_writer_t err_writer_t;
+
+    /// ...run
+    int (derives::*run_)(int argc, char_t** argv, char_t** env);
+    virtual int run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if ((run_)) {
+            err = (this->*run_)(argc, argv, env);
+        } else {
+            err = extends::run(argc, argv, env);
+        }
+        return err;
+    }
 
 protected:
 }; /// class maint

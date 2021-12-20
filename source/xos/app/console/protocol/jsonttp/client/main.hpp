@@ -51,6 +51,7 @@ public:
 
     /// constructor / destructor
     maint(): run_(0) {
+        this->set_request_method_post();
     }
     virtual ~maint() {
     }

@@ -16,66 +16,46 @@
 ///   File: main_opt.hpp
 ///
 /// Author: $author$
-///   Date: 12/19/2021
+///   Date: 12/20/2021
 ///////////////////////////////////////////////////////////////////////
-#ifndef XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPT_HPP
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPT_HPP
+#ifndef XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPT_HPP
+#define XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPT_HPP
 
-#include "xos/app/console/protocol/iittp/client/main.hpp"
-#include "xos/app/console/network/sockets/protocol/jsonttp/client/main.hpp"
+#if !defined(XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_PROTOCOL_NAME)
+#define XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_PROTOCOL_Name "Iittp"
+#define XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_PROTOCOL_name "iittp"
+#define XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_PROTOCOL_NAME "IITTP"
+#endif /// !defined(XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_PROTOCOL_NAME)
 
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPTIONS_CHARS_EXTEND \
+#include "xos/app/console/protocol/jsonttp/base/main.hpp"
 
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPTIONS_OPTIONS_EXTEND \
+#define XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPTIONS_CHARS_EXTEND \
 
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPTIONS_CHARS \
-   XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPTIONS_CHARS_EXTEND \
-   XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_JSONTTP_CLIENT_MAIN_OPTIONS_CHARS
+#define XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPTIONS_OPTIONS_EXTEND \
 
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPTIONS_OPTIONS \
-   XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPTIONS_OPTIONS_EXTEND \
-   XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_JSONTTP_CLIENT_MAIN_OPTIONS_OPTIONS
+#define XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPTIONS_CHARS \
+   XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPTIONS_CHARS_EXTEND \
+   XOS_APP_CONSOLE_PROTOCOL_JSONTTP_BASE_MAIN_OPTIONS_CHARS
 
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_ARGS 0
-#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_ARGV 0,
+#define XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPTIONS_OPTIONS \
+   XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPTIONS_OPTIONS_EXTEND \
+   XOS_APP_CONSOLE_PROTOCOL_JSONTTP_BASE_MAIN_OPTIONS_OPTIONS
+
+#define XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_ARGS 0
+#define XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_ARGV 0,
 
 namespace xos {
 namespace app {
 namespace console {
-namespace network {
-namespace sockets {
 namespace protocol {
 namespace iittp {
-namespace client {
+namespace base {
 
 /// class main_optt
 template 
-<class TExtends = xos::app::console::network::sockets::protocol::jsonttp::client::maint
- <xos::app::console::network::sockets::protocol::jsonttp::client::main_optt
- <xos::app::console::network::sockets::protocol::http::client::maint
- <xos::app::console::network::sockets::protocol::http::client::main_optt
- <xos::app::console::network::sockets::protocol::xttp::client::maint
- <xos::app::console::network::sockets::protocol::xttp::client::main_optt
- <xos::app::console::protocol::iittp::client::maint
- <xos::app::console::protocol::iittp::client::main_optt
- <xos::app::console::protocol::jsonttp::client::maint
- <xos::app::console::protocol::jsonttp::client::main_optt
- <xos::app::console::protocol::http::client::maint
- <xos::app::console::protocol::http::client::main_optt
- <xos::app::console::protocol::xttp::client::maint
- <xos::app::console::protocol::xttp::client::main_optt
- <xos::app::console::network::sockets::protocol::xttp::base::maint
- <xos::app::console::network::sockets::protocol::xttp::base::main_optt
- <xos::app::console::protocol::iittp::base::maint
- <xos::app::console::protocol::iittp::base::main_optt
- <xos::app::console::protocol::jsonttp::base::maint
- <xos::app::console::protocol::jsonttp::base::main_optt
- <xos::app::console::protocol::http::base::maint
- <xos::app::console::protocol::http::base::main_optt
- <xos::app::console::protocol::xttp::base::maint
- <xos::app::console::protocol::xttp::base::main_optt
- <xos::app::console::network::sockets::client::maint<> > > > > > > > > > > > > > > > > > > > > > > > >, 
-class TImplements = typename TExtends::implements>
+<class TExtends = xos::app::console::protocol::jsonttp::base::maint
+ <xos::app::console::protocol::jsonttp::base::main_optt<> >, 
+ class TImplements = typename TExtends::implements>
 
 class exported main_optt: virtual public TImplements, public TExtends {
 public:
@@ -139,9 +119,9 @@ protected:
         return chars;
     }
     virtual const char_t* options(const struct option*& longopts) {
-        static const char_t* chars = XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPTIONS_CHARS;
+        static const char_t* chars = XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPTIONS_CHARS;
         static struct option optstruct[]= {
-            XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPTIONS_OPTIONS
+            XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPTIONS_OPTIONS
             {0, 0, 0, 0}};
         longopts = optstruct;
         return chars;
@@ -149,9 +129,9 @@ protected:
 
     /// ...argument...
     virtual const char_t* arguments(const char_t**& argv) {
-        static const char_t* _args = XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_ARGS;
+        static const char_t* _args = XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_ARGS;
         static const char_t* _argv[] = {
-            XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_ARGV
+            XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_ARGV
             0};
         argv = _argv;
         return _args;
@@ -161,13 +141,11 @@ protected:
 }; /// class main_optt
 typedef main_optt<> main_opt;
 
-} /// namespace client
+} /// namespace base
 } /// namespace iittp
 } /// namespace protocol
-} /// namespace sockets
-} /// namespace network
 } /// namespace console
 } /// namespace app
 } /// namespace xos
 
-#endif /// ndef XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_IITTP_CLIENT_MAIN_OPT_HPP
+#endif /// ndef XOS_APP_CONSOLE_PROTOCOL_IITTP_BASE_MAIN_OPT_HPP

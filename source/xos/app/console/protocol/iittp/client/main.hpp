@@ -16,21 +16,23 @@
 ///   File: main.hpp
 ///
 /// Author: $author$
-///   Date: 12/16/2021
+///   Date: 12/20/2021
 ///////////////////////////////////////////////////////////////////////
-#ifndef XOS_APP_CONSOLE_UDENTIFY_MAIN_HPP
-#define XOS_APP_CONSOLE_UDENTIFY_MAIN_HPP
+#ifndef XOS_APP_CONSOLE_PROTOCOL_IITTP_CLIENT_MAIN_HPP
+#define XOS_APP_CONSOLE_PROTOCOL_IITTP_CLIENT_MAIN_HPP
 
-#include "xos/app/console/udentify/main_opt.hpp"
+#include "xos/app/console/protocol/iittp/client/main_opt.hpp"
 
 namespace xos {
 namespace app {
 namespace console {
-namespace udentify {
+namespace protocol {
+namespace iittp {
+namespace client {
 
 /// class maint
 template 
-<class TExtends = xos::app::console::udentify::main_optt<>, 
+<class TExtends = xos::app::console::protocol::iittp::client::main_optt<>, 
  class TImplements = typename TExtends::implements>
 
 class exported maint: virtual public TImplements, public TExtends {
@@ -48,10 +50,8 @@ public:
     typedef typename extends::file_t file_t;
 
     /// constructor / destructor
-    maint()
-    : run_(0),
-      request_resource_path_("/udentify/token") {
-        this->set_request_resource(request_resource_path());
+    maint(): run_(0) {
+        this->set_request_method_post();
     }
     virtual ~maint() {
     }
@@ -77,18 +77,15 @@ protected:
         return err;
     }
 
-    virtual string_t& request_resource_path() const {
-        return (string_t&)request_resource_path_;
-    }
-
 protected:
-    string_t request_resource_path_;
 }; /// class maint
 typedef maint<> main;
 
-} /// namespace udentify
+} /// namespace client
+} /// namespace iittp
+} /// namespace protocol
 } /// namespace console
 } /// namespace app
 } /// namespace xos
 
-#endif /// ndef XOS_APP_CONSOLE_UDENTIFY_MAIN_HPP
+#endif /// ndef XOS_APP_CONSOLE_PROTOCOL_IITTP_CLIENT_MAIN_HPP
