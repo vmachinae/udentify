@@ -93,7 +93,7 @@ public:
         set_get_creds_response();
         set_set_creds_response();
         
-        this->set_content(this->request());
+        set_content_to_request();
     }
     virtual ~maint() {
     }
@@ -107,6 +107,8 @@ protected:
     typedef typename extends::out_writer_t out_writer_t;
     typedef typename extends::err_writer_t err_writer_t;
     typedef ::xos::byte_array byte_array_t;
+
+    typedef typename extends::content_t content_t;
 
     /// ...run
     int (derives::*run_)(int argc, char_t** argv, char_t** env);
@@ -296,6 +298,16 @@ protected:
             }
         }
         return err;
+    }
+
+    /// set_content...
+    virtual content_t& set_content_to_request() {
+        this->set_content(this->request());
+        return this->content();
+    }
+    virtual content_t& set_content_to_response() {
+        this->set_content(this->response());
+        return this->content();
     }
 
     /// creds request...

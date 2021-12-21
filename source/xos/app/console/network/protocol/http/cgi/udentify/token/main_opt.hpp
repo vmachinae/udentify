@@ -13,37 +13,41 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: main.hpp
+///   File: main_opt.hpp
 ///
 /// Author: $author$
-///   Date: 12/18/2021
+///   Date: 12/21/2021
 ///////////////////////////////////////////////////////////////////////
-#ifndef XOS_APP_CONSOLE_PROTOCOL_JSONTTP_BASE_MAIN_HPP
-#define XOS_APP_CONSOLE_PROTOCOL_JSONTTP_BASE_MAIN_HPP
+#ifndef XOS_APP_CONSOLE_NETWORK_PROTOCOL_HTTP_CGI_UDENTIFY_TOKEN_MAIN_OPT_HPP
+#define XOS_APP_CONSOLE_NETWORK_PROTOCOL_HTTP_CGI_UDENTIFY_TOKEN_MAIN_OPT_HPP
 
-#include "xos/app/console/protocol/jsonttp/base/main_opt.hpp"
-#include "xos/protocol/jsonttp/message/body/content.hpp"
-
-#define XOS_APP_CONSOLE_PROTOCOL_JSONTTP_BASE_HELLO_MESSAGE_CONTENT "{\"Hello\":\"Hello\"}\r\n"
-#define XOS_APP_CONSOLE_PROTOCOL_JSONTTP_BASE_BYE_MESSAGE_CONTENT "{\"Bye\":\"Bye\"}\r\n"
+#include "xos/app/console/network/protocol/http/cgi/main.hpp"
+#include "xos/app/console/protocol/iittp/base/main.hpp"
+#include "xos/app/console/protocol/xttp/content/main.hpp"
 
 namespace xos {
 namespace app {
 namespace console {
+namespace network {
 namespace protocol {
-namespace jsonttp {
-namespace base {
+namespace http {
+namespace cgi {
+namespace udentify {
+namespace token {
 
-/// class maint
+/// class main_optt
 template 
-<class TExtends = xos::app::console::protocol::jsonttp::base::main_optt<>, 
+<class TExtends = xos::app::console::network::protocol::http::cgi::maint
+ <xos::app::console::network::protocol::http::cgi::main_optt
+ <xos::app::console::protocol::iittp::base::maint
+ <xos::app::console::protocol::xttp::content::maint<> > > >, 
  class TImplements = typename TExtends::implements>
 
-class exported maint: virtual public TImplements, public TExtends {
+class exported main_optt: virtual public TImplements, public TExtends {
 public:
     typedef TImplements implements;
     typedef TExtends extends;
-    typedef maint derives;
+    typedef main_optt derives;
 
     typedef typename extends::char_t char_t;
     typedef typename extends::end_char_t end_char_t;
@@ -54,17 +58,12 @@ public:
     typedef typename extends::file_t file_t;
 
     /// constructor / destructor
-    maint()
-    : run_(0), 
-      hello_json_(XOS_APP_CONSOLE_PROTOCOL_JSONTTP_BASE_HELLO_MESSAGE_CONTENT),
-      bye_json_(XOS_APP_CONSOLE_PROTOCOL_JSONTTP_BASE_BYE_MESSAGE_CONTENT) {
-        this->set_content_type_json();
-        this->set_content(this->hello_json());
+    main_optt(): run_(0) {
     }
-    virtual ~maint() {
+    virtual ~main_optt() {
     }
 private:
-    maint(const maint& copy) {
+    main_optt(const main_optt& copy) {
         throw exception(exception_unexpected);
     }
 
@@ -72,8 +71,8 @@ protected:
     typedef typename extends::in_reader_t in_reader_t;
     typedef typename extends::out_writer_t out_writer_t;
     typedef typename extends::err_writer_t err_writer_t;
-
-    typedef typename extends::content_t content_t;
+    
+    typedef typename extends::content_type_header_t content_type_header_t;
 
     /// ...run
     int (derives::*run_)(int argc, char_t** argv, char_t** env);
@@ -87,24 +86,18 @@ protected:
         return err;
     }
 
-    /// hello... / bye...
-    virtual xos::protocol::jsonttp::message::body::content& hello_json() const {
-        return (xos::protocol::jsonttp::message::body::content&)hello_json_;
-    }
-    virtual xos::protocol::jsonttp::message::body::content& bye_json() const {
-        return (xos::protocol::jsonttp::message::body::content&)bye_json_;
-    }
-
 protected:
-    xos::protocol::jsonttp::message::body::content hello_json_, bye_json_;
-}; /// class maint
-typedef maint<> main;
+}; /// class main_optt
+typedef main_optt<> main_opt;
 
-} /// namespace base
-} /// namespace jsonttp
+} /// namespace token
+} /// namespace udentify
+} /// namespace cgi
+} /// namespace http
 } /// namespace protocol
+} /// namespace network
 } /// namespace console
 } /// namespace app
 } /// namespace xos
 
-#endif /// ndef XOS_APP_CONSOLE_PROTOCOL_JSONTTP_BASE_MAIN_HPP
+#endif /// ndef XOS_APP_CONSOLE_NETWORK_PROTOCOL_HTTP_CGI_UDENTIFY_TOKEN_MAIN_OPT_HPP
