@@ -54,7 +54,10 @@ public:
 
     /// constructor / destructor
     maint(): 
-    run_(0), set_content_type_from_context_(0) {
+    run_(0), 
+    console_gateway_run_(0), 
+    after_console_gateway_run_(0),
+    set_content_type_from_context_(0) {
         
         this->set_content_to_response();
     }
@@ -73,7 +76,8 @@ protected:
     typedef typename extends::content_type_header_t content_type_header_t;
 
     /// ...run
-    int (derives::*run_)(int argc, char_t** argv, char_t** env);
+    typedef int (derives::*derives_run_t)(int argc, char_t** argv, char_t** env);
+    derives_run_t run_;
     virtual int run(int argc, char_t** argv, char_t** env) {
         int err = 0;
         if ((run_)) {
@@ -85,21 +89,62 @@ protected:
     }
 
     /// ...console_gateway_run
+    derives_run_t console_gateway_run_, after_console_gateway_run_;
     virtual int console_gateway_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
-        this->out(this->content());
-        //err = extends::console_gateway_run(argc, argv, env);
-        return err;
-    }
-    virtual int before_console_gateway_run(int argc, char_t** argv, char_t** env) {
-        int err = 0;
-        set_set_content_type_from_context_to_json();
-        err = extends::before_console_gateway_run(argc, argv, env);
+        if ((console_gateway_run_)) {
+            (this->*console_gateway_run_)(argc, argv, env);
+        } else {
+            err = extends::console_gateway_run(argc, argv, env);
+        }
         return err;
     }
     virtual int after_console_gateway_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
+        if ((after_console_gateway_run_)) {
+            (this->*after_console_gateway_run_)(argc, argv, env);
+        } else {
+            err = extends::after_console_gateway_run(argc, argv, env);
+        }
+        return err;
+    }
+    virtual int before_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        content_type_header_t* content_type_header = 0;
+        
+        if ((content_type_header = this->request_content_type()) 
+            && (!(content_type_header != this->content_type_text_json()))) {
+            set_token_console_gateway_run(argc, argv, env);
+            err = extends::before_console_gateway_run(argc, argv, env);
+        } else {
+            err = extends::before_console_gateway_run(argc, argv, env);
+        }
+        return err;
+    }
+    
+    /// ...token_console_gateway_run
+    virtual int token_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        this->out(this->content());
+        return err;
+    }
+    virtual int after_token_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
         err = extends::after_console_gateway_run(argc, argv, env);
+        unset_token_console_gateway_run(argc, argv, env);
+        return err;
+    }
+    virtual int set_token_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        console_gateway_run_ = &derives::token_console_gateway_run;
+        after_console_gateway_run_ = &derives::after_token_console_gateway_run;
+        set_set_content_type_from_context_to_json();
+        return err;
+    }
+    virtual int unset_token_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        console_gateway_run_ = 0;
+        after_console_gateway_run_ = 0;
         unset_set_content_type_from_context();
         return err;
     }
@@ -114,7 +159,7 @@ protected:
         return extends::set_content_type_from_context();
     }
     virtual content_type_header_t* set_content_type_from_context_to_json() {
-        return this->set_content_type_json();
+        return this->set_content_type_text_json();
     }
     virtual set_content_type_from_context_t set_set_content_type_from_context_to_json() {
         set_content_type_from_context_ = &derives::set_content_type_from_context_to_json;
